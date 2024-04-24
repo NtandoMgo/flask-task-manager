@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+</head>
+<body>
+    <h1>Task Details</h1>
+    <p><strong>Title:</strong> {{ task.title }}</p>
+    <p><strong>Description:</strong> {{ task.description }}</p>
+    <p><strong>Priority:</strong> {{ task.priority }}</p>
+    <p><strong>Status:</strong> {{ task.status }}</p>
+    <a href="{{ url_for('edit_task', task_id=task.id) }}">Edit Task</a>
+    <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post">
+        <button type="submit">Delete Task</button>
+    </form>
+    <a href="{{ url_for('list_tasks') }}">Back to Task List</a>
+</body>
+</html>

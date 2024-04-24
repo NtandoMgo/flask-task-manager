@@ -1,7 +1,18 @@
-import dbm
-from flask import Flask, render_template
-from flask import redirect, request, url_for
-from models import Task
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:MySQL123.com@localhost/task_management'
+db = SQLAlchemy(app)
+
+# Define Task model
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=True)
+    priority = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.String(20), nullable=False)
 
 app = Flask(__name__)
 
